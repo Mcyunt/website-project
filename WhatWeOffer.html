@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Games We Can Host - UnGodly Hosting</title>
+    <link rel="stylesheet" href="stylecss.css"> <!-- Optional external CSS -->
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: white;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background-color: #1f1f1f;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .game-card h2 {
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>What Games We Can Host</h1>
+    </header>
+
+    <section class="game-grid">
+        <div class="game-card">
+            <img src="Minecraft.png" alt="Minecraft">
+            <h2>Minecraft</h2>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252490/header.jpg" alt="Rust">
+            <h2>Rust</h2>
+        </div>
+        <div class="game-card">
+            <img src="Csgo.png" alt="CS:GO">
+            <h2>CS:GO</h2>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1623730/header.jpg" alt="Palworld">
+            <h2>Palworld</h2>
+        </div>
+        <div class="game-card">
+            <img src="dontstarve.png" alt="Don't Starve Together">
+            <h2>Don't Starve Together</h2>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/108600/header.jpg" alt="Project Zomboid">
+            <h2>Project Zomboid</h2>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<section id="contact">
+    <h2>Home</h2>
+    <form action="indexmain.html" method="get">
+        
+        <button type="submit"><-Back</button>
+    </form>
+</section>
+
+</body>
+</html>

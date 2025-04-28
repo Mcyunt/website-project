@@ -1,0 +1,387 @@
+/* Background Gradient: Clean purple-to-black fade */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #7b1fa2, #212121); /* Softer gradient */
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+    scroll-behavior: smooth;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header/Nav Styles */
+header {
+    background-color: rgba(0, 0, 0, 0.4); /* Softer transparency */
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px); /* Subtle glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 12px 18px;
+    border-radius: 50px; /* Rounded pill shape for menu items */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #9b59b6;
+    color: #fff;
+}
+
+/* CTA Button */
+.cta-button {
+    background-color: transparent;
+    padding: 12px 24px;
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 50px; /* Rounded pill shape */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.cta-button:hover {
+    background-color: #9b59b6;
+    transform: scale(1.05);
+}
+
+/* Section Layout */
+section {
+    padding: 80px 10%;
+    text-align: center;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1, h2, h3 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2.8rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form input, form textarea {
+    padding: 14px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px; /* Rounded input */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid #444;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #9b59b6;
+    outline: none;
+}
+
+/* Buttons */
+form button {
+    padding: 12px 28px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+form button:hover {
+    background-color: #9b59b6;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Temporary */
+
+/* Starfield background effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(white 1px, transparent 1px),
+                radial-gradient(white 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-position: 0 0, 50px 50px;
+    z-index: -1;
+    animation: spaceMove 80s linear infinite;
+    opacity: 0.1;
+}
+
+/* Animation to move stars */
+@keyframes spaceMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-500px, -500px);
+    }
+}
+
+/* Space Parallax Star Layers */
+.stars-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-repeat: repeat;
+    background-size: contain;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* Each layer uses a different star pattern + speed */
+.stars1 {
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars1 100s linear infinite;
+    opacity: 0.1;
+}
+
+.stars2 {
+    background-image: url('https://www.transparenttextures.com/patterns/tiny-grid.png');
+    animation: moveStars2 150s linear infinite;
+    opacity: 0.05;
+}
+
+.stars3 {
+    background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+    animation: moveStars3 200s linear infinite;
+    opacity: 0.03;
+}
+
+/* Animations */
+@keyframes moveStars1 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-500px, -500px); }
+}
+
+@keyframes moveStars2 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-1000px, -500px); }
+}
+
+@keyframes moveStars3 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-1500px, -800px); }
+}
+
+/* Glow Effect for Titles */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #9b59b6, 0 0 30px #9b59b6;
+    }
+    50% {
+        text-shadow: 0 0 15px #ffffff, 0 0 25px #9b59b6, 0 0 35px #9b59b6;
+    }
+    100% {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #9b59b6, 0 0 30px #9b59b6;
+    }
+}
+
+h1, h2 {
+    animation: glow 3s infinite ease-in-out;
+}
+
+/* Auth Container */
+.auth-container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Auth Form Styling */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-form input {
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.auth-form input:focus {
+    border-color: #9b59b6;
+    outline: none;
+}
+
+/* Buttons for Auth */
+.auth-buttons button {
+    padding: 14px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.auth-buttons button:hover {
+    background-color: #9b59b6;
+    transform: scale(1.05);
+}
+
+/* Main Background - dark space */
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/* Universe Star Layers */
+.stars, .stars2, .stars3, .milkyway {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* First Layer of Small Stars */
+.stars {
+    background-image: url('https://i.imgur.com/x0L8Yr7.jpeg'); /* small white stars */
+    background-size: cover;
+    animation: moveStars 200s linear infinite;
+    opacity: 0.2;
+}
+
+/* Second Layer of Medium Stars */
+.stars2 {
+    background-image: url('https://i.imgur.com/x0L8Yr7.jpeg'); /* medium cluster stars */
+    background-size: cover;
+    animation: moveStars2 300s linear infinite;
+    opacity: 0.15;
+}
+
+/* Third Layer of Big Stars */
+.stars3 {
+    background-image: url('https://i.imgur.com/x0L8Yr7.jpeg'); /* few big stars */
+    background-size: cover;
+    animation: moveStars3 500s linear infinite;
+    opacity: 0.1;
+}
+
+/* Milky Way Layer */
+.milkyway {
+    background-image: url('https://i.imgur.com/dg1yIZb.png'); /* milky way galaxy */
+    background-size: cover;
+    animation: moveMilkyway 400s linear infinite;
+    opacity: 0.08;
+}
+
+/* Animations for movement */
+@keyframes moveStars {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-500px, -1000px); }
+}
+
+@keyframes moveStars2 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-1000px, -800px); }
+}
+
+@keyframes moveStars3 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-800px, -1200px); }
+}
+
+@keyframes moveMilkyway {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-700px, -700px); }
+}

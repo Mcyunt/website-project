@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnGodly Hosting - Login / Sign Up</title>
+    <link rel="stylesheet" href="stylecss.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="indexmain.html">Home</a></li>
+                <li><a href="Guide.html">Guide</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="signinorupfirst.html">Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Auth Section -->
+    <section id="auth">
+        <h2>UnGodly Hosting</h2>
+        <div class="auth-container">
+            <form class="auth-form" onsubmit="return false;">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+                <div class="auth-buttons">
+                    <button type="button" onclick="validateAndRedirect()">Sign In</button>
+                    <button type="button" onclick="validateAndRedirect()">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 UnGodly Hosting [Beta] | Secure Sign In / Sign Up</p>
+    </footer>
+
+    <script>
+        function validateAndRedirect() {
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value.trim();
+
+            if (email === "" || password === "") {
+                alert("Please fill out both email and password.");
+            } else {
+                window.location.href = "create.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

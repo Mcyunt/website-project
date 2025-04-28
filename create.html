@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Your Server</title>
+  <link rel="stylesheet" href="stylecss.css">
+</head>
+<body>
+
+<!-- Star Layers -->
+<div class="stars-layer stars1"></div>
+<div class="stars-layer stars2"></div>
+<div class="stars-layer stars3"></div>
+
+<!-- Header -->
+<header>
+  <nav>
+    <ul>
+      <li><a href="indexmain.html">Home</a></li>
+      <li><a href="create.html">Create Server</a></li>
+      <li><a href="server.html">Pricing</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Create Server Section -->
+<section id="create-server">
+  <h2>Launch Your Server</h2>
+  <p>Fill out the details below to get started!</p>
+
+  <form id="serverForm">
+
+    <!-- Server Name -->
+    <input type="text" id="serverName" placeholder="Server Name" required>
+
+    <!-- Game Selection -->
+    <select id="gameType" required style="padding: 12px; width: 80%; max-width: 600px; border-radius: 6px; background-color: white; color: black; border: 2px solid #000; font-size: 1rem;">
+      <option value="">Select Game</option>
+      <option value="Minecraft">Minecraft</option>
+      <option value="Valheim">Valheim</option>
+      <option value="Rust">Rust</option>
+      <option value="ARK: Survival Evolved">ARK: Survival Evolved</option>
+      <option value="Counter-Strike 2">Counter-Strike 2</option>
+      <option value="Garry's Mod">Garry's Mod</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <!-- Region Selection -->
+    <select id="region" required style="padding: 12px; width: 80%; max-width: 600px; border-radius: 6px; background-color: white; color: black; border: 2px solid #000; font-size: 1rem;">
+      <option value="">Select Region</option>
+      <option value="North America">North America</option>
+      <option value="Europe">Europe</option>
+      <option value="Asia">Asia</option>
+      <option value="Australia">Australia</option>
+      <option value="South America">South America</option>
+    </select>
+
+    <!-- Pricing Plan -->
+    <select id="plan" required style="padding: 12px; width: 80%; max-width: 600px; border-radius: 6px; background-color: white; color: black; border: 2px solid #000; font-size: 1rem;">
+      <option value="">Select Plan</option>
+      <option value="Free">Free - 2 Players / 512MB RAM</option>
+      <option value="Starter">Starter - 10 Players / 2GB RAM ($5/mo)</option>
+      <option value="Pro">Pro - 50 Players / 6GB RAM ($15/mo)</option>
+      <option value="Elite">Elite - 150+ Players / 16GB RAM ($30/mo)</option>
+    </select>
+
+    <!-- Notes / Description -->
+    <textarea id="notes" rows="4" placeholder="Any special requests or mods? (Optional)"></textarea>
+
+    <!-- Submit Button -->
+    <button type="submit" class="cta-button">Launch Server</button>
+
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 StellarHost. All rights reserved.
+</footer>
+
+<!-- Save form data and redirect -->
+<script>
+document.getElementById('serverForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form from actually submitting
+
+  // Save entered data to localStorage
+  localStorage.setItem('serverName', document.getElementById('serverName').value);
+  localStorage.setItem('gameType', document.getElementById('gameType').value);
+  localStorage.setItem('region', document.getElementById('region').value);
+  localStorage.setItem('plan', document.getElementById('plan').value);
+  localStorage.setItem('notes', document.getElementById('notes').value);
+
+  // Redirect to the created server page
+  window.location.href = "created.html";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Server Panel</title>
+  <link rel="stylesheet" href="stylecss.css">
+  <style>
+    body {
+      background: #121212;
+      color: #ccc;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1c1c1c;
+      padding: 10px 0;
+      text-align: center;
+    }
+    header h1 {
+      color: #eee;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #ccc;
+      font-weight: bold;
+    }
+    #server-panel {
+      padding: 20px;
+      max-width: 800px;
+      margin: 30px auto;
+      background: #1c1c1c;
+      border-radius: 12px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .progress-bar {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 20px;
+      margin-bottom: 15px;
+    }
+    .progress {
+      height: 100%;
+      background-color: limegreen;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .progress.disk {
+      background-color: orange;
+    }
+    .status-online {
+      color: #00ff00;
+      font-weight: bold;
+    }
+    .status-offline {
+      color: #ff5555;
+      font-weight: bold;
+    }
+    .server-ip {
+      font-family: monospace;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: inline-block;
+      color: #ccc;
+    }
+    .cta-button {
+      background: #333;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #555;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #1c1c1c;
+      margin-top: 30px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Brand Name -->
+<header>
+  <h1>UnGodly Hosting</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#server-panel">My Server Panel</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Server Panel Section -->
+<section id="server-panel">
+  <h2>Your Server Panel</h2>
+  <p>Manage your server below:</p>
+
+  <div id="serverInfo" style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; margin-top: 20px;">
+    <!-- Server info will load here -->
+  </div>
+
+  <div style="margin-top: 30px; text-align: center;">
+    <button class="cta-button" onclick="restartServer()">Restart Server</button>
+    <button class="cta-button" onclick="stopServer()">Stop Server</button>
+    <button class="cta-button" onclick="deleteServer()">Delete Server</button>
+    <button class="cta-button" onclick="startServer()">Start Server</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 UnGodly Hosting. All rights reserved.
+</footer>
+
+<script>
+let serverStatus = true;
+let ramUsage = Math.floor(Math.random() * 50) + 20;
+let diskUsage = Math.floor(Math.random() * 50) + 10;
+let ramInterval, diskInterval;
+let ipAddress, port;
+
+function generateRandomIP() {
+  return `${randomByte()}.${randomByte()}.${randomByte()}.${randomByte()}`;
+}
+
+function randomByte() {
+  return Math.floor(Math.random() * 256);
+}
+
+function generateRandomPort() {
+  return Math.floor(Math.random() * (65535 - 1024)) + 1024;
+}
+
+function loadServerInfo() {
+  const serverName = localStorage.getItem('serverName') || 'Unknown Server';
+  const gameType = localStorage.getItem('gameType') || 'Unknown Game';
+  const region = localStorage.getItem('region') || 'Unknown Region';
+  const plan = localStorage.getItem('plan') || 'Basic';
+  const notes = localStorage.getItem('notes') || 'No description.';
+
+  if (!ipAddress || !port) {
+    ipAddress = generateRandomIP();
+    port = generateRandomPort();
+  }
+
+  const serverInfoDiv = document.getElementById('serverInfo');
+  serverInfoDiv.innerHTML = `
+    <h3>${serverName}</h3>
+    <p><strong>Game:</strong> ${gameType}</p>
+    <p><strong>Region:</strong> ${region}</p>
+    <p><strong>Plan:</strong> ${plan}</p>
+    <p><strong>Description:</strong> ${notes}</p>
+    <p><strong>Status:</strong> <span id="statusText" class="status-online">Online</span></p>
+    <p><strong>Server IP:</strong> <span class="server-ip">${ipAddress}:${port}</span></p>
+
+    <div style="margin-top: 20px;">
+      <p><strong>RAM Usage:</strong> <span id="ramText">${ramUsage}%</span></p>
+      <div class="progress-bar">
+        <div id="ramProgress" class="progress" style="width: ${ramUsage}%"></div>
+      </div>
+
+      <p><strong>Disk Usage:</strong> <span id="diskText">${diskUsage}%</span></p>
+      <div class="progress-bar">
+        <div id="diskProgress" class="progress disk" style="width: ${diskUsage}%"></div>
+      </div>
+    </div>
+  `;
+
+  startUsageSimulation();
+}
+
+function startUsageSimulation() {
+  ramInterval = setInterval(() => {
+    if (serverStatus) {
+      ramUsage = Math.min(Math.max(ramUsage + (Math.random() * 10 - 5), 0), 100);
+      document.getElementById('ramProgress').style.width = ramUsage + '%';
+      document.getElementById('ramText').textContent = Math.round(ramUsage) + '%';
+    }
+  }, 2000);
+
+  diskInterval = setInterval(() => {
+    if (serverStatus) {
+      diskUsage = Math.min(Math.max(diskUsage + (Math.random() * 5 - 2.5), 0), 100);
+      document.getElementById('diskProgress').style.width = diskUsage + '%';
+      document.getElementById('diskText').textContent = Math.round(diskUsage) + '%';
+    }
+  }, 3000);
+}
+
+function restartServer() {
+  alert('Server is restarting... 🚀');
+  setTimeout(() => {
+    alert('Server restarted successfully!');
+    ramUsage = Math.floor(Math.random() * 50) + 20;
+    diskUsage = Math.floor(Math.random() * 50) + 10;
+    clearInterval(ramInterval);
+    clearInterval(diskInterval);
+    loadServerInfo();
+  }, 2000);
+}
+
+function stopServer() {
+  if (serverStatus) {
+    serverStatus = false;
+    document.getElementById('statusText').textContent = 'Offline';
+    document.getElementById('statusText').className = 'status-offline';
+    clearInterval(ramInterval);
+    clearInterval(diskInterval);
+    alert('Server has been stopped. 🛑');
+  } else {
+    alert('Server is already offline.');
+  }
+}
+
+function deleteServer() {
+  if (confirm('Are you sure you want to delete your server? This action cannot be undone!')) {
+    localStorage.clear();
+    alert('Server deleted successfully.');
+    window.location.href = 'create-server.html';
+  }
+}
+
+function startServer() {
+  alert('Server is starting... 🚀');
+  setTimeout(() => {
+    alert('Server started successfully!');
+    document.getElementById('statusText').textContent = 'Online';
+    document.getElementById('statusText').classList.remove('status-offline');
+    document.getElementById('statusText').classList.add('status-online');
+  }, 2000);
+}
+
+window.onload = loadServerInfo;
+</script>
+
+</body>
+</html>
